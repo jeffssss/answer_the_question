@@ -46,13 +46,13 @@ def image_cut_tounao():
     img = Image.open("./screenshot.png")
     #区域由一个4元组定义，表示为坐标是 (x0, y0, x1, x2)
     #问题区域
-    question  = img.crop((25, 390, 725,605))
+    question  = img.crop((40, 260, 710,510))
     question.save('question.png')
-    # resizeImg(ori_img='question.png',dst_img='question_resize.png',dst_w=140,dst_h=43,save_q=35)
+    # resizeImg(ori_img='question.png',dst_img='question_resize.png',dst_w=134,dst_h=50,save_q=35)
     #选线区域
-    choices = img.crop((155, 665, 595, 1195))
+    choices = img.crop((70, 530, 680, 850))
     choices.save('choices.png')
-    # resizeImg(ori_img='choices.png',dst_img='choices_resize.png',dst_w=88,dst_h=106,save_q=35)
+    # resizeImg(ori_img='choices.png',dst_img='choices_resize.png',dst_w=122,dst_h=64,save_q=35)
 
 
 
