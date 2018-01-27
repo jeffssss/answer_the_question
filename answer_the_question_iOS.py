@@ -30,6 +30,7 @@ c = wda.Client()
 s = c.session()
 
 
+autoClickAnswer = True
 # 定义参数变量  
 options = {  
   'detect_direction': 'true',  
@@ -99,6 +100,8 @@ def count_base(question,choices):
     print(Fore.YELLOW +'-----------------欢迎你使用卖假货学长的小助手---------------------------'+ Fore.RESET)
     print('问题: '+question)
     #print('———————————————————————————')
+
+    answer = ''
     if '不是' in question or '不能' in question or '不属于' in question  or '不可以' in question or '不包括' in question:
         print('——————————————————————————')
         for i in range(len(choices)):
@@ -108,6 +111,7 @@ def count_base(question,choices):
         if dic:
             if dic[max(dic, key=dic.get)] != dic[min(dic, key=dic.get)]:
                 print '请注意此题为否定题，建议选择：', Fore.RED + min(dic, key=dic.get), Fore.RESET
+                answer = min(dic, key=dic.get)
                 #print()
     
     else:
@@ -118,9 +122,16 @@ def count_base(question,choices):
             print(choices[i] + " : " + str(counts[i]))
         if dic:
             if dic[max(dic, key=dic.get)] != 0:
-                
                 print u'请注意此题为肯定题，建议选择：', Fore.RED + max(dic, key=dic.get) ,Fore.RESET 
+                answer = max(dic, key=dic.get)
                 #print()
+    # 自动点答案
+    if autoClickAnswer:
+        for i in range(len(choices)):
+            if choices[i] == answer:
+                print u'选择第',str(i+1),u'个答案',answer
+                s.tap(375,714 + 140 * i)
+            
 
 
 def game_fun(image_cut):
